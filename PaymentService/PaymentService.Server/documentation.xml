@@ -31,7 +31,7 @@
             <response code="400">Invalid request data</response>
             <response code="500">Ooops! Some problems occured during request execution</response>
         </member>
-        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeOneTimePayment(PaymentService.Service.ViewModels.Request.OneTimePaymentRequestVM)">
+        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeOneTimePayment(PaymentService.Service.ViewModels.Request.Payment.OneTimePaymentRequestVM)">
             <summary>
             Makes one time payment when customer is not registered/authorized
             </summary>

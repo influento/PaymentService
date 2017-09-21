@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PaymentService.Service.Abstract;
 using PaymentService.Service.Entities;
 using PaymentService.Service.ViewModels.Response;
+using Microsoft.Extensions.Logging;
 
 namespace PaymentService.Server.Controllers
 {
@@ -15,10 +16,12 @@ namespace PaymentService.Server.Controllers
     public class CustomerController : Controller
     {
         private ICustomerWorker _customerWorker;
+        private readonly ILogger _logger;
 
-        public CustomerController(ICustomerWorker customerWorker)
+        public CustomerController(ICustomerWorker customerWorker, ILogger<CustomerController> logger)
         {
             _customerWorker = customerWorker;
+            _logger = logger;
         }
 
         /// <summary>
@@ -45,6 +48,7 @@ namespace PaymentService.Server.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogWarning(e, e.Message, request);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
@@ -73,6 +77,7 @@ namespace PaymentService.Server.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogWarning(e, e.Message, request);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

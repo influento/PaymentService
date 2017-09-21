@@ -1,12 +1,8 @@
 ﻿using PaymentService.Service.Abstract;
 using PaymentService.Service.Entities;
-using PaymentService.Service.Enums;
-using PaymentService.Service.Properties;
-using PaymentService.Service.ViewModels.Request;
+using PaymentService.Service.ViewModels.Request.Payment;
 using Stripe;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PaymentService.Service.Stripe

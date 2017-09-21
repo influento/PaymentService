@@ -1,8 +1,6 @@
 ﻿using PaymentService.Service.Entities;
-using PaymentService.Service.ViewModels.Request;
-using System;
+using PaymentService.Service.ViewModels.Request.Payment;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PaymentService.Service.Abstract

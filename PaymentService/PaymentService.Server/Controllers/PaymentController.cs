@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Service.Entities;
 using PaymentService.Service.Abstract;
-using PaymentService.Service.ViewModels.Request;
+using PaymentService.Service.ViewModels.Request.Payment;
+using Microsoft.Extensions.Logging;
 
 namespace PaymentService.Server.Controllers
 {
@@ -15,10 +14,12 @@ namespace PaymentService.Server.Controllers
     public class PaymentController : Controller
     {
         private readonly IPaymentWorker _paymentWorker;
+        private readonly ILogger _logger;
 
-        public PaymentController(IPaymentWorker paymentWorker)
+        public PaymentController(IPaymentWorker paymentWorker, ILogger<PaymentController> logger)
         {
             _paymentWorker = paymentWorker;
+            _logger = logger;
         }
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace PaymentService.Server.Controllers
             }
             catch(Exception e)
             {
+                _logger.LogWarning(e, e.Message, request);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
@@ -73,6 +75,7 @@ namespace PaymentService.Server.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogWarning(e, e.Message, request);
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PaymentService.Service.ViewModels.Request
+namespace PaymentService.Service.ViewModels.Request.Payment
 {
     public class OneTimePaymentRequestVM
     {
