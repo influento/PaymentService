@@ -1,6 +1,8 @@
 ﻿using PaymentService.Service.Abstract;
 using PaymentService.Service.Entities;
-using PaymentService.Service.ViewModels.Request.Payment;
+using PaymentService.Service.ViewModels.Request.CardVM;
+using PaymentService.Service.ViewModels.Request.CustomerVM;
+using PaymentService.Service.ViewModels.Request.PaymentVM;
 using Stripe;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +18,7 @@ namespace PaymentService.Service.Stripe
             _customerWorker = customerWorker;
         }
 
-        public async Task MakeRegularPayment(Payment payment)
+        public async Task MakeRegularPayment(RegularPaymentsRequestVM payment)
         {
             var chargeService = new StripeChargeService();
 
@@ -30,22 +32,22 @@ namespace PaymentService.Service.Stripe
 
         public async Task MakeOneTimePayment(OneTimePaymentRequestVM payment)
         {
-            var card = new Card()
+            var card = new CardRequestVM()
             {
-                Number = payment.CardNumber,
-                CVC = payment.CVC,
-                ExpirationMonth = payment.ExpirationMonth,
-                ExpirationYear = payment.ExpirationYear
+                Number = payment.Card.Number,
+                CVC = payment.Card.CVC,
+                ExpirationMonth = payment.Card.ExpirationMonth,
+                ExpirationYear = payment.Card.ExpirationYear
             };
 
-            var createCustomerResponseVM = await _customerWorker.Create(new Customer()
+            var createCustomerResponseVM = await _customerWorker.Create(new CreateCustomerRequestVM()
             {
                 Card = card,
                 Email = payment.Email,
                 Name = payment.Name
             });
 
-            await MakeRegularPayment(new Payment()
+            await MakeRegularPayment(new RegularPaymentsRequestVM()
             {
                 Amount = payment.Amount,
                 Currency = payment.Currency,

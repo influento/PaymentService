@@ -1,17 +1,14 @@
 ﻿using PaymentService.Service.Abstract;
-using PaymentService.Service.Entities;
-using PaymentService.Service.ViewModels.Response;
+using PaymentService.Service.ViewModels.Request.CustomerVM;
+using PaymentService.Service.ViewModels.Response.CustomerVM;
 using Stripe;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PaymentService.Service.Stripe
 {
     public class CustomerWorker : StripeWorker, ICustomerWorker
     {
-        public async Task<CreateCustomerResponseVM> Create(Customer customer)
+        public async Task<CreateCustomerResponseVM> Create(CreateCustomerRequestVM customer)
         {
             var sourceCard = new SourceCard()
             {
@@ -42,7 +39,7 @@ namespace PaymentService.Service.Stripe
             await customerService.DeleteAsync(customerId);
         }
 
-        public async Task Update(Customer customer)
+        public async Task Update(UpdateCustomerRequestVM customer)
         {
             var sourceCard = new SourceCard()
             {
@@ -60,7 +57,7 @@ namespace PaymentService.Service.Stripe
             };
 
             var customerService = new StripeCustomerService();
-            await customerService.UpdateAsync(customer.Id, customerOptions);
+            await customerService.UpdateAsync(customer.CustomerId, customerOptions);
         }
     }
 }

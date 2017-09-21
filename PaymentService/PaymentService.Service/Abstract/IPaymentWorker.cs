@@ -1,5 +1,5 @@
 ﻿using PaymentService.Service.Entities;
-using PaymentService.Service.ViewModels.Request.Payment;
+using PaymentService.Service.ViewModels.Request.PaymentVM;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,7 +11,7 @@ namespace PaymentService.Service.Abstract
         /// Makes regular payment in payment service (use for authorized customer)
         /// </summary>
         /// <param name="payment"></param>
-        Task MakeRegularPayment(Payment payment);
+        Task MakeRegularPayment(RegularPaymentsRequestVM payment);
 
         /// <summary>
         /// Makes one time payment in payment service (use for unregistered/unauthorized customer)

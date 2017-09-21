@@ -4,7 +4,7 @@
         <name>PaymentService.Server</name>
     </assembly>
     <members>
-        <member name="M:PaymentService.Server.Controllers.CustomerController.CreateCustomer(PaymentService.Service.Entities.Customer)">
+        <member name="M:PaymentService.Server.Controllers.CustomerController.CreateCustomer(PaymentService.Service.ViewModels.Request.CustomerVM.CreateCustomerRequestVM)">
             <summary>
             Creates customer in payment service
             </summary>
@@ -13,7 +13,7 @@
             <response code="400">Invalid request data</response>
             <response code="500">Ooops! Some problems occured during request execution</response>
         </member>
-        <member name="M:PaymentService.Server.Controllers.CustomerController.UpdateCustomer(PaymentService.Service.Entities.Customer)">
+        <member name="M:PaymentService.Server.Controllers.CustomerController.UpdateCustomer(PaymentService.Service.ViewModels.Request.CustomerVM.UpdateCustomerRequestVM)">
             <summary>
             Updates customer information in payment service
             </summary>
@@ -22,7 +22,7 @@
             <response code="400">Invalid request data</response>
             <response code="500">Ooops! Some problems occured during request execution</response>
         </member>
-        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeRegularPayment(PaymentService.Service.Entities.Payment)">
+        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeRegularPayment(PaymentService.Service.ViewModels.Request.PaymentVM.RegularPaymentsRequestVM)">
             <summary>
             Makes payment by usual (authorized) customer to payment service
             </summary>
@@ -31,7 +31,7 @@
             <response code="400">Invalid request data</response>
             <response code="500">Ooops! Some problems occured during request execution</response>
         </member>
-        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeOneTimePayment(PaymentService.Service.ViewModels.Request.Payment.OneTimePaymentRequestVM)">
+        <member name="M:PaymentService.Server.Controllers.PaymentController.MakeOneTimePayment(PaymentService.Service.ViewModels.Request.PaymentVM.OneTimePaymentRequestVM)">
             <summary>
             Makes one time payment when customer is not registered/authorized
             </summary>

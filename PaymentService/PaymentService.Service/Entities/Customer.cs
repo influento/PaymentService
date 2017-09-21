@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PaymentService.Service.Entities
+﻿namespace PaymentService.Service.Entities
 {
     public class Customer
     {

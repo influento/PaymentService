@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PaymentService.Service.Entities;
 using PaymentService.Service.Abstract;
-using PaymentService.Service.ViewModels.Request.Payment;
+using PaymentService.Service.ViewModels.Request.PaymentVM;
 using Microsoft.Extensions.Logging;
 
 namespace PaymentService.Server.Controllers
@@ -33,11 +32,11 @@ namespace PaymentService.Server.Controllers
         [ProducesResponseType(typeof(void), 200)]
         [ProducesResponseType(typeof(void), 400)]
         [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> MakeRegularPayment([FromBody] Payment request)
+        public async Task<IActionResult> MakeRegularPayment([FromBody] RegularPaymentsRequestVM request)
         {
             try
             {
-                if (request != null)
+                if (request != null && request.IsValid())
                 {
                     await _paymentWorker.MakeRegularPayment(request);
                     return Ok();
@@ -66,7 +65,7 @@ namespace PaymentService.Server.Controllers
         {
             try
             {
-                if (request != null)
+                if (request != null && request.IsValid())
                 {
                     _paymentWorker.MakeOneTimePayment(request);
                     return Ok();

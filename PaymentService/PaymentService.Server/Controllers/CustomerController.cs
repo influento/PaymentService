@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PaymentService.Service.Abstract;
-using PaymentService.Service.Entities;
-using PaymentService.Service.ViewModels.Response;
 using Microsoft.Extensions.Logging;
+using PaymentService.Service.ViewModels.Request.CustomerVM;
+using PaymentService.Service.ViewModels.Response.CustomerVM;
 
 namespace PaymentService.Server.Controllers
 {
@@ -15,7 +13,7 @@ namespace PaymentService.Server.Controllers
     [Route("api/customer")]
     public class CustomerController : Controller
     {
-        private ICustomerWorker _customerWorker;
+        private readonly ICustomerWorker _customerWorker;
         private readonly ILogger _logger;
 
         public CustomerController(ICustomerWorker customerWorker, ILogger<CustomerController> logger)
@@ -35,11 +33,11 @@ namespace PaymentService.Server.Controllers
         [ProducesResponseType(typeof(CreateCustomerResponseVM), 200)]
         [ProducesResponseType(typeof(void), 400)]
         [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> CreateCustomer([FromBody] Customer request)
+        public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequestVM request)
         {
             try
             {
-                if (request != null)
+                if (request != null && request.IsValid())
                 {
                     var response = await _customerWorker.Create(request);
                     return Ok(response);
@@ -64,11 +62,11 @@ namespace PaymentService.Server.Controllers
         [ProducesResponseType(typeof(void), 200)]
         [ProducesResponseType(typeof(void), 400)]
         [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> UpdateCustomer([FromBody] Customer request)
+        public async Task<IActionResult> UpdateCustomer([FromBody] UpdateCustomerRequestVM request)
         {
             try
             {
-                if (request != null)
+                if (request != null && request.IsValid())
                 {
                     await _customerWorker.Update(request);
                     return Ok();
