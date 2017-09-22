@@ -5,7 +5,6 @@ namespace PaymentService.Service.ViewModels.Request.CustomerVM
 {
     public class CreateCustomerRequestVM : IRequestValidator
     {
-
         public string Name { get; set; }
 
         public string Email { get; set; }

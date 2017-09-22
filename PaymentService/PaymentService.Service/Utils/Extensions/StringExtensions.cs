@@ -42,6 +42,5 @@ namespace PaymentService.Service.Utils.Extensions
             }
             return false;
         }
-
     }
 }

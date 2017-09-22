@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PaymentService.Service.Abstract;
 using PaymentService.Service.ViewModels.Request.PaymentVM;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace PaymentService.Server.Controllers
 {
@@ -43,7 +43,7 @@ namespace PaymentService.Server.Controllers
                 }
                 return BadRequest();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _logger.LogWarning(e, e.Message, request);
                 return StatusCode(StatusCodes.Status500InternalServerError);

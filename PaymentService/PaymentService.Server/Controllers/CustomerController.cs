@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PaymentService.Service.Abstract;
 using Microsoft.Extensions.Logging;
+using PaymentService.Service.Abstract;
 using PaymentService.Service.ViewModels.Request.CustomerVM;
 using PaymentService.Service.ViewModels.Response.CustomerVM;
+using System;
+using System.Threading.Tasks;
 
 namespace PaymentService.Server.Controllers
 {

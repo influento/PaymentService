@@ -13,6 +13,6 @@
             return !string.IsNullOrWhiteSpace(CustomerId) &&
                    Currency.Length == 3 &&
                    Amount > 0;
-        } 
+        }
     }
 }

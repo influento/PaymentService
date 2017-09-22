@@ -65,7 +65,6 @@ namespace PaymentService.Server
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment service API v1");
             });
-
         }
     }
 }

@@ -67,7 +67,7 @@ namespace PaymentService.Service.Stripe
             });
 
             var customerPayments = new List<Payment>();
-            foreach(var charge in stripeCharges.Data)
+            foreach (var charge in stripeCharges.Data)
             {
                 customerPayments.Add(new Payment()
                 {
